@@ -2,8 +2,9 @@
 using MovieList.Models;
 using System.Diagnostics;
 
-namespace MovieList.Controllers
+namespace MovieList.Areas.Users.Controllers
 {
+    [Area("Users")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
