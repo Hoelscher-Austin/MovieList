@@ -59,5 +59,16 @@ namespace MovieList.Areas.Admin.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public IActionResult Add(Movie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                _dbContext.Movies.Add(movie);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
