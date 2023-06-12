@@ -5,14 +5,50 @@
     <div class="card-header bg-gradient">
         <div class="row">
             <div class="col-12 text-center">
-                <h1>Edit Movie Information</h1>
+                <h2>Edit Movie Information</h2>
             </div>
         </div>
     </div>
 
     <div class="card-body">
-        <form>
 
+        <form method="post">
+            <input asp-for="@Model.Id" hidden/>
+
+            <div class="form-floating p-2 col-12">
+                <input asp-for="Title" class="form-control border-0 shadow"/>
+                <label asp-for="Title" class="m-2 text-dark"></label>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-floating p-2 col-12">
+                <label asp-for="Description" class="mb-4  text-dark"></label>
+                <textarea asp-for="Description" id="tiny" class="form-control shadow"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-floating p-2 col-12">
+                <input asp-for="Director" class="form-control shadow" />
+                <label asp-for="Director" class="m-2 text-dark"></label>
+                <span asp-validation-for="Director" class="text-danger"></span>
+            </div>
+            <div class="form-floating p-2 col-12">
+                <input asp-for="YearReleased" class="form-control shadow" />
+                <label asp-for="YearReleased" class="m-2 text-dark"></label>
+                <span asp-validation-for="YearReleased" class="text-danger"></span>
+            </div>
+            <div class="form-floating p-2 col-12">
+                <input class="form-control text-dark" type="file" id="formFile">
+                <label asp-for="CoverUrl" for="formFile" class="m-2 form-label text-dark"></label>
+                <span asp-validation-for="CoverUrl" class="text-danger"></span>
+            </div>
+            <div class="row pt-2">
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                </div>
+                <div class="col-6">
+                    <a asp-controller="Movie" asp-action="Index" class="btn btn-secondary form-control">Back to List</a>
+                </div>
+            </div>
 
         </form>
 
@@ -20,4 +56,13 @@
 
 </div>
 
-
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml"/>
+        <script>
+            tinymce.init({
+                selector: 'textarea#tiny'
+            });
+        </script>
+    }
+}

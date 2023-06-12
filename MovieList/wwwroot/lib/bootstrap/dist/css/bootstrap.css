@@ -1178,7 +1178,6 @@ progress {
     .g-sm-5, .gy-sm-5 {
         --bs-gutter-y: 3rem
     }
-
 }
 
 @media (min-width:768px) {
@@ -3642,7 +3641,7 @@ textarea.form-control-lg {
     --bs-dropdown-spacer: 0.125rem;
     --bs-dropdown-font-size: 1rem;
     --bs-dropdown-color: var(--bs-body-color);
-    --bs-dropdown-bg: white;
+    --bs-dropdown-bg: #222;
     --bs-dropdown-border-color: #444;
     --bs-dropdown-border-radius: var(--bs-border-radius);
     --bs-dropdown-border-width: var(--bs-border-width);

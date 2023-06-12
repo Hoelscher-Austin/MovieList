@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace MovieList.Models.Models
         [Required]
         public string Director { get; set; }
         [Required]
+        [DisplayName("Year Released")]
         public int YearReleased { get; set; }
         public string? CoverUrl { get; set; }
 
