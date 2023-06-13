@@ -55,7 +55,9 @@ namespace MovieList.Areas.Admin.Controllers
             {
                 _dbContext.Movies.Update(movie);
                 _dbContext.SaveChanges();
+                TempData["success"] = "Updated Successfully";
                 return RedirectToAction("Index");
+
             }
             return View();
         }
@@ -66,13 +68,14 @@ namespace MovieList.Areas.Admin.Controllers
             {
                 _dbContext.Movies.Add(movie);
                 _dbContext.SaveChanges();
+                TempData["success"] = "Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View();
         }
-        [HttpPost]
+       
         [ActionName("Delete")]
-        public IActionResult DeletePOST(int id)
+        public IActionResult Delete(int? id)
         {
             Movie? movie = _dbContext.Movies.FirstOrDefault(m => m.Id == id);
             if(movie == null)
@@ -82,6 +85,7 @@ namespace MovieList.Areas.Admin.Controllers
 
             _dbContext.Movies.Remove(movie);
             _dbContext.SaveChanges();
+            TempData["success"] = "Updated Successfully";
             return RedirectToAction("Index");
         }
 
