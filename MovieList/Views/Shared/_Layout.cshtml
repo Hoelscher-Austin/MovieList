@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+        <nav data-bs-theme="dark" class="navbar navbar-expand-sm bg-gradient navbar-toggleable-sm bg-body-tertiary border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Movie List</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,7 +30,7 @@
                             <a asp-area="" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Content Management
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu bg-gradient border-0 bg-opacity-25 col-1 p-0">
                                 <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Movie" asp-action="Index">Movies</a></li>
                             </ul>
                         </li>
@@ -49,15 +49,16 @@
         </main>
     </div>
 
-    <footer class="border-top footer bg-primary bg-gradient text-muted text-center mt-2">
+    <footer data-bs-theme="dark" class="border-top footer bg-gradient bg-body-tertiary text-muted text-center">
         <div class="container">
-            &copy; 2023 - MovieList - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - Austin H.
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.tiny.cloud/1/1x8pgkty5v1uum3cghmulw3nottorkr9m9wpk9v63ygkh4ej/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

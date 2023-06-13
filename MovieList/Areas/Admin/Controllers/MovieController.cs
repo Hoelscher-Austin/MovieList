@@ -70,5 +70,20 @@ namespace MovieList.Areas.Admin.Controllers
             }
             return View();
         }
+        [HttpPost]
+        [ActionName("Delete")]
+        public IActionResult DeletePOST(int id)
+        {
+            Movie? movie = _dbContext.Movies.FirstOrDefault(m => m.Id == id);
+            if(movie == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.Movies.Remove(movie);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
