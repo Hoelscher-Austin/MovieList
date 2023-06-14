@@ -3,7 +3,7 @@
 
 <div class="card shadow">
 
-    <div class="card-header bg-gradient">
+    <div class="card-header bg-dark bg-gradient">
         <div class="row">
             <div class="col-12 text-center">
                 <h2>Movie List</h2>
@@ -11,11 +11,11 @@
         </div>
     </div>
     
-    <div class="card-body mb-5">
+    <div data-bs-theme="dark" class="card-body mb-5 bg-gradient">
 
         <div class="row pb-3">
             <div class="col-12 text-end">
-                <a asp-area="Admin" asp-controller="Movie" asp-action="Add" class="btn btn-outline-success">
+                <a asp-area="Admin" asp-controller="Movie" asp-action="Add" class="btn btn-info">
                     <i class="bi bi-plus-circle"></i> Add Movie
                 </a>
             </div>
