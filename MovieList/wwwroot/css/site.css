@@ -1,8 +1,10 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-
-
+.dataTables_wrapper .dataTables_length select{
+    padding: 10px;
+    color: black;
+}
 
 .divider-text:before,
 .divider-text:after {
@@ -553,5 +555,6 @@ bg-success {
     }
 
 @media screen and (max-width: 480px){
-    footer{clear}
+    footer {clear}
 }
+

@@ -13551,3 +13551,8 @@ textarea.form-control-lg {
 .alert-dark {
     background-color: #303030
 }
+
+div.dt-button-collection {
+    background-color: red;
+}
+

@@ -22,7 +22,7 @@ namespace MovieList.Models.Models
         [DisplayName("Year Released")]
         public int YearReleased { get; set; }
         public string? CoverUrl { get; set; }
-
+        
 
     }
 }

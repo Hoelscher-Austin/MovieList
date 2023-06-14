@@ -73,7 +73,7 @@ namespace MovieList.Areas.Admin.Controllers
             }
             return View();
         }
-       
+        [HttpDelete]
         [ActionName("Delete")]
         public IActionResult Delete(int? id)
         {
@@ -88,6 +88,23 @@ namespace MovieList.Areas.Admin.Controllers
             TempData["success"] = "Updated Successfully";
             return RedirectToAction("Index");
         }
+
+        #region API CALLS
+
+        [HttpGet]
+        public IActionResult GetAll() { 
+            List<Movie> movieList = _dbContext.Movies.ToList();
+            return Json(new {data = movieList});
+        }
+
+        #endregion
+
+
+
+
+
+
+
 
     }
 }
