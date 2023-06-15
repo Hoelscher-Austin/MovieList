@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MovieList.DataAccess.Data;
 using MovieList.Models.Models;
+using System.Text.RegularExpressions;
 
 namespace MovieList.Areas.Admin.Controllers
 {
@@ -34,12 +35,8 @@ namespace MovieList.Areas.Admin.Controllers
             if(id == null || id == 0) {
                 return NotFound();
             }
-            Movie? movie = _dbContext.Movies.FirstOrDefault(x => x.Id == id);
 
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
+            Movie? movie = _dbContext.Movies.FirstOrDefault(x => x.Id == id);
 
             return View(movie);
         }
@@ -51,11 +48,14 @@ namespace MovieList.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(Movie movie)
         {
+           
             if(ModelState.IsValid)
             {
+                movie.Director = movie.Director.Trim();
+                movie.Director = Regex.Replace(movie.Director, @"\s+", " ");
                 _dbContext.Movies.Update(movie);
                 _dbContext.SaveChanges();
-                TempData["success"] = "Updated Successfully";
+                TempData["success"] = "Movie Updated Successfully";
                 return RedirectToAction("Index");
 
             }
@@ -66,9 +66,11 @@ namespace MovieList.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                movie.Director = movie.Director.Trim();
+                movie.Director = Regex.Replace(movie.Director, @"\s+", " ");
                 _dbContext.Movies.Add(movie);
                 _dbContext.SaveChanges();
-                TempData["success"] = "Updated Successfully";
+                TempData["success"] = "Movie Added Successfully";
                 return RedirectToAction("Index");
             }
             return View();
@@ -85,7 +87,7 @@ namespace MovieList.Areas.Admin.Controllers
 
             _dbContext.Movies.Remove(movie);
             _dbContext.SaveChanges();
-            TempData["success"] = "Updated Successfully";
+            TempData["success"] = "Movie Deleted Successfully";
             return RedirectToAction("Index");
         }
 
