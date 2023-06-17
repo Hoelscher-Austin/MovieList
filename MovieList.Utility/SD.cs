@@ -8,5 +8,7 @@ namespace MovieList.Utility
 {
     public class SD
     {
+        public const string Role_Base_User = "Base User";
+        public const string Role_Admin = "Admin";
     }
 }

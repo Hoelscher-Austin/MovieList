@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 </head>
-<body>
+<body class="bg-gradient">
     <header>
         <nav data-bs-theme="dark" class="navbar navbar-expand-sm bg-gradient navbar-toggleable-sm bg-body-tertiary border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -38,10 +38,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="text" placeholder="Search">
-                        <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                    <partial name="_LoginPartial.cshtml" />
                 </div>
             </div>
         </nav>
@@ -52,7 +49,7 @@
         </main>
     </div>
 
-    <footer data-bs-theme="dark" class="border-top footer bg-gradient bg-body-tertiary text-muted text-center">
+    <footer data-bs-theme="dark" class="border-top footer bg-gradient bg-body-tertiary text-muted text-center mt-3">
         <div class="container">
             &copy; 2023 - Austin H.
         </div>
