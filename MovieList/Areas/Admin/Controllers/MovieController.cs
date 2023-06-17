@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieList.DataAccess.Data;
 using MovieList.Models.Models;
+using MovieList.Utility;
 using System.Text.RegularExpressions;
 
 namespace MovieList.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class MovieController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
