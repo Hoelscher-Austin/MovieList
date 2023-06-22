@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\Movie\" />
+    <Content Remove="wwwroot\images\Movie\7b42d3a7-ada7-4c60-ad1e-8ff14d650418.jpg" />
+    <Content Remove="wwwroot\images\Movie\b87c6619-f7e8-4285-a08b-71041f857861.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +32,10 @@
     <ProjectReference Include="..\MovieList.DataAccess\MovieList.DataAccess.csproj" />
     <ProjectReference Include="..\MovieList.Models\MovieList.Models.csproj" />
     <ProjectReference Include="..\MovieList.Utility\MovieList.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Movie\" />
   </ItemGroup>
 
 </Project>

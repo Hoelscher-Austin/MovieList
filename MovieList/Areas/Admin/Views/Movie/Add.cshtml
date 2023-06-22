@@ -12,7 +12,7 @@
 
     <div class="card-body">
 
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
 
             <div class="form-floating p-2 col-12">
                 <input asp-for="Title" class="form-control border-0 shadow" />
@@ -24,18 +24,23 @@
                 <textarea asp-for="Description" id="tiny" class="form-control shadow"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-floating p-2 col-12">
-                <input asp-for="Director" class="form-control shadow" />
-                <label asp-for="Director" class="m-2 text-dark"></label>
-                <span asp-validation-for="Director" class="text-danger"></span>
+            <div class="p-2 col-12">
+                <div class="form-floating p-2 col-12">
+                    <input asp-for="Director" class="form-control shadow" />
+                    <label asp-for="Director" class="m-2 text-dark"></label>
+                    <span asp-validation-for="Director" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-floating p-2 col-12">
-                <input asp-for="YearReleased" class="form-control shadow" />
-                <label asp-for="YearReleased" class="m-2 text-dark"></label>
-                <span asp-validation-for="YearReleased" class="text-danger"></span>
+            <div class="p-2 col-12">
+                <div class="form-floating p-2 col-12">
+                    <input asp-for="YearReleased" class="form-control shadow" />
+                    <label asp-for="YearReleased" class="m-2 text-dark"></label>
+                    <span asp-validation-for="YearReleased" class="text-danger"></span>
+                </div>
             </div>
+
             <div class="form-floating p-2 col-12">
-                <input data-bs-theme="dark" class="form-control p-5" type="file" id="formFile">
+                <input data-bs-theme="dark" name="file" class="form-control p-5" type="file" id="formFile">
                 <label data-bs-theme="dark" asp-for="CoverUrl" for="formFile" class="ms-1 mt-1 form-label text-dark"></label>
                 <span asp-validation-for="CoverUrl" class="text-danger"></span>
             </div>

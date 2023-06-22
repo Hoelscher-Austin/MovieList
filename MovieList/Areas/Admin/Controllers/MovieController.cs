@@ -13,10 +13,12 @@ namespace MovieList.Areas.Admin.Controllers
     public class MovieController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public MovieController(ApplicationDbContext context)
+        public MovieController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _dbContext = context;
+            _webHostEnvironment = webHostEnvironment;
         }
         //GET Actions
         public IActionResult Index()
@@ -49,11 +51,39 @@ namespace MovieList.Areas.Admin.Controllers
         //POST Actions
 
         [HttpPost]
-        public IActionResult Edit(Movie movie)
+        public IActionResult Edit(Movie movie, IFormFile? file)
         {
+
+
            
             if(ModelState.IsValid)
             {
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if(file != null)
+                {
+                   
+
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string moviePath = Path.Combine(wwwRootPath, @"images\Movie");
+
+                    if (!string.IsNullOrEmpty(movie.CoverUrl))
+                    {
+                        var oldPath = Path.Combine(wwwRootPath, movie.CoverUrl.TrimStart('\\'));
+
+                        if(System.IO.File.Exists(oldPath))
+                        {
+                            System.IO.File.Delete(oldPath);
+                        }
+                    }
+
+                    using (var fileStream = new FileStream(Path.Combine(moviePath, fileName),FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+
+                    movie.CoverUrl = @"\images\Movie\" + fileName;
+                }
+
                 movie.Director = movie.Director.Trim();
                 movie.Director = Regex.Replace(movie.Director, @"\s+", " ");
                 _dbContext.Movies.Update(movie);
@@ -65,10 +95,30 @@ namespace MovieList.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add(Movie movie)
+        public IActionResult Add(Movie movie, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
+
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file != null)
+                {
+
+
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string moviePath = Path.Combine(wwwRootPath, @"images\Movie");
+
+         
+
+                    using (var fileStream = new FileStream(Path.Combine(moviePath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+
+                    movie.CoverUrl = @"\images\Movie\" + fileName;
+                }
+
+
                 movie.Director = movie.Director.Trim();
                 movie.Director = Regex.Replace(movie.Director, @"\s+", " ");
                 _dbContext.Movies.Add(movie);
@@ -86,6 +136,17 @@ namespace MovieList.Areas.Admin.Controllers
             if(movie == null)
             {
                 return NotFound();
+            }
+
+            if (!string.IsNullOrEmpty(movie.CoverUrl))
+            {
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                var oldPath = Path.Combine(wwwRootPath, movie.CoverUrl.TrimStart('\\'));
+
+                if (System.IO.File.Exists(oldPath))
+                {
+                    System.IO.File.Delete(oldPath);
+                }
             }
 
             _dbContext.Movies.Remove(movie);

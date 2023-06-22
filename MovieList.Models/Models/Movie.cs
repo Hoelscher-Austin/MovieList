@@ -27,7 +27,7 @@ namespace MovieList.Models.Models
         [DisplayName("Year Released")]
         [Range(1902,3000,ErrorMessage = "The Year must be between 1902-3000")]
         public int YearReleased { get; set; }
-        
+        [DisplayName("Cover Image")]
         public string? CoverUrl { get; set; }
         
 
