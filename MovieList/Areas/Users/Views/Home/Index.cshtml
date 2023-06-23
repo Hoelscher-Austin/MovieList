@@ -1,8 +1,27 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model List<Movie>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div class="row pb-2">
+
+    @foreach (var movie in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card bg-gradient border-0 p-3 shadow border-top border-5 rounded" style="background-color:#455a87">
+                        <img src="@movie.CoverUrl" class=" card-img-top rounded" />
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 opacity-75 text-uppercase text-center">@movie.Title</p>
+                                <p class="card-title text-warning text-center">by <b>@movie.Director</b></p>
+                            </div>
+                            <a class="btn btn-info text-center form-control" asp-route-id="@movie.Id" asp-controller="Home" asp-action="Details">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
 </div>

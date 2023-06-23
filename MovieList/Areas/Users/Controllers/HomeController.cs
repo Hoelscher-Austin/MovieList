@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieList.DataAccess.Data;
 using MovieList.Models;
+using MovieList.Models.Models;
 using System.Diagnostics;
 
 namespace MovieList.Areas.Users.Controllers
@@ -8,15 +10,24 @@ namespace MovieList.Areas.Users.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _dbContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
         {
+            _dbContext = dbContext;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<Movie> moviesList = _dbContext.Movies.ToList();
+            return View(moviesList);
+        }
+
+        public IActionResult Details(int id)
+        {
+            Movie movie = _dbContext.Movies.FirstOrDefault(x => x.Id == id);
+            return View(movie);
         }
 
         public IActionResult Privacy()
