@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieList.DataAccess.Data;
 using MovieList.Models.Models;
@@ -86,6 +87,7 @@ namespace MovieList.Areas.Admin.Controllers
 
                 movie.Director = movie.Director.Trim();
                 movie.Director = Regex.Replace(movie.Director, @"\s+", " ");
+                movie.Description = Regex.Replace(movie.Description, @"<p>|</p>","");
                 _dbContext.Movies.Update(movie);
                 _dbContext.SaveChanges();
                 TempData["success"] = "Movie Updated Successfully";
@@ -121,6 +123,7 @@ namespace MovieList.Areas.Admin.Controllers
 
                 movie.Director = movie.Director.Trim();
                 movie.Director = Regex.Replace(movie.Director, @"\s+", " ");
+                movie.Description = Regex.Replace(movie.Description, @"<p>|</p>", "");
                 _dbContext.Movies.Add(movie);
                 _dbContext.SaveChanges();
                 TempData["success"] = "Movie Added Successfully";
